@@ -40,6 +40,10 @@ Repo: `~/projects/personal/le.gume`. Live: https://james-gibson.github.io/le.gum
   "spill the beans" as ordinary phrases. There is no page that connects them, no FAQ that
   winks, and no sentence that says what the name is made of. A reader who notices is meant to
   keep it to themselves.
+- **A child seed runs the inherited-page audit before it ships.** `project-seeds.md` lists what a
+  clone keeps only if it can re-derive: pages, seeds, isotopes, `examples/`, `/design`, `/palette`.
+  An inherited page that still passes the build is the normal failure — the build checks markup,
+  not truth.
 - **Do not add infrastructure the site argues against.** No search index, no CMS, no analytics —
   `pitch/spill-the-beans.md` documents those absences as choices. Adding one makes the pitch a
   lie.

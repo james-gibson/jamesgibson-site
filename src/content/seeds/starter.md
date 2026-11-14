@@ -34,7 +34,9 @@ knows what to re-derive.
 ## Lifting this seed
 
 1. Clone the repository; do not scrape the pages.
-2. Run the checklist in [Project seeds](/guides/project-seeds) — rename, replace sections, delete.
+2. Run the checklist and the inherited-page audit in [Project seeds](/guides/project-seeds) —
+   rename, replace sections, delete. A page that survives unchanged is a claim this site made, not
+   yours.
 3. Keep `src/lib/content.ts`, `src/lib/markdown.tsx`, `scripts/verify-publish.mjs`,
    `scripts/postbuild.mjs` and the workflow. Those five files are the pattern.
 4. Replace the prose. It is about this site; yours is about yours.

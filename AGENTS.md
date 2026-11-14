@@ -28,6 +28,9 @@ check to make a build pass; fix the output.
 - The nav, section indexes, footer columns, TOC and counts are derived from the file tree. There
   is no nav array. Adding a file is adding a page.
 - Markdown only. A live widget is a route under `src/pages/`, like `/design`.
+- A child seed inherits claims, not just files. Before the first push, run the inherited-page audit
+  in `src/content/guides/project-seeds.md` — every page, example and guard rule kept from this
+  repository has to be true of the new one, or be deleted with its links.
 - Router links are basename-relative; raw `href` strings need `import.meta.env.BASE_URL`.
 - Voice: dry, technical, specific. The legume idioms ("project seeds", "nuts and bolts", "peas in
   a pod", "spill the beans") are used as ordinary phrases and never explained.
