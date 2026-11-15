@@ -11,6 +11,7 @@
     { "name": "pulse-deep", "hex": "#c81e6f", "role": "interaction, pressed" },
     { "name": "violet", "hex": "#ffc2dd", "role": "second voice" }
   ],
+  "grounds": ["ink", "surface"],
   "pairs": [
     { "fg": "cream", "bg": "ink", "min": 7, "note": "body text on the page" },
     { "fg": "cream", "bg": "surface", "min": 7, "note": "body text on a card" },

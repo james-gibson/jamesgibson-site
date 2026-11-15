@@ -2,7 +2,7 @@
 title: Ivory, dimmed
 description: The palette moved from near-white on moss-green to dim ivory on a neutral ground, with a spicy pink for interaction and a pastel for the second voice.
 order: 18
-updated: 2026-11-13
+updated: 2026-11-15
 tags: design, colour, accessibility
 seeds: starter
 ---
@@ -42,14 +42,17 @@ it has to clear 4.5:1 on its own rather than relying on size. 5.6:1 is the margi
   `/design`. A token that is only in one of them is a colour that drifts.
 - **The doom waivers assume a dark palette.** They waive gradients, alpha and dark mode because the
   design is dark. A light theme would invalidate the set, not just the colours.
-- **The gate only covers declared pairs.** `src/lib/palette.json` lists the combinations the site
-  actually paints and the floor each must clear; `npm run contrast` fails the build when one drops.
-  A pair nobody declared is untested, and a gradient has no single ratio to declare — the worst stop
-  is the number to check, by hand.
+- **The gate reads what ships.** `src/lib/palette.json` lists the combinations the site actually
+  paints and the floor each must clear; `npm run contrast` fails the build when one drops. It also
+  reads the built pages, resolves every `currentColor` to the token its class names, applies the
+  alpha that class actually carries, and fails when an ink and its ground fall below the floor
+  *after* alpha, when a painted element names no declared ink, or when two touching marks are
+  closer than 3:1. A gradient still has no single ratio to declare — the worst stop is the number
+  to check, by hand.
 
-That last point is the remaining debt. The honest position is that the declared palette is a gate
-and everything outside it is a measurement. The rule that would cover the rest is `DOOM-014` from
-[Runs in Doom](/docs/doom-renderable), which needs a browser.
+That is `RULES-09`, and it needs no browser: the rule that would cover the rest is a static read of
+the built HTML, not `DOOM-014`. What it cannot see is a pair whose geometry the source has not
+settled (a hover state) and a gradient's interior stops.
 
 ## The check
 

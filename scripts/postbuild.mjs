@@ -178,6 +178,7 @@ const RULES = [
   ['RULES-06', 'A claim that the site does X must be checkable at the URL or in the repository.'],
   ['RULES-07', 'Child seeds ship back: package a new capability as an isotope and propose it upstream.'],
   ['RULES-08', 'A child seed defers to these rules until it records a local override, with a reason.'],
+  ['RULES-09', 'An ink that carries meaning is measured as it lands: after any alpha, against its ground, and against the ink it touches.'],
 ]
 const rulesVersion = commit ?? built
 await writeFile(

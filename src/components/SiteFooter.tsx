@@ -15,7 +15,7 @@ export function SiteFooter() {
             A documentation site that documents itself. Nothing here is hidden behind a
             build system you have to learn first.
           </p>
-          <p className="mt-4 font-mono text-xs text-muted/70">{PAGES.length} pages · {SECTIONS.length} sections · 1 build</p>
+          <p className="mt-4 font-mono text-xs text-muted">{PAGES.length} pages · {SECTIONS.length} sections · 1 build</p>
         </div>
 
         {SECTIONS.slice(0, 3).map((section) => (
@@ -55,7 +55,7 @@ export function SiteFooter() {
 
       <AgentCta />
 
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 border-t border-line-soft px-5 py-5 text-xs text-muted/70 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 border-t border-line-soft px-5 py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8">
         <p>
           Built with React, Vite and Tailwind. Motion by{' '}
           <a

@@ -53,7 +53,7 @@ export function Colour() {
               />
               <p className="mt-2 font-mono text-xs text-cream">{token.name}</p>
               <p className="font-mono text-[11px] text-muted">{token.hex}</p>
-              <p className="mt-1 text-[11px] leading-4 text-muted/80">{token.role}</p>
+              <p className="mt-1 text-[11px] leading-4 text-muted">{token.role}</p>
             </li>
           ))}
         </ul>
@@ -105,7 +105,7 @@ export function Colour() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-muted/70">
+        <p className="mt-2 text-xs text-muted">
           Grade is from the ratio: 7.0+ AAA, 4.5+ AA, 3.0+ AA for large text only, below that a
           failure. The colour of the number is the grade, not the text colour being measured.
         </p>
@@ -134,11 +134,11 @@ export function Colour() {
                   {pair.fg} on {pair.bg}
                 </span>
                 <span className="font-mono text-xs text-muted">{ratio.toFixed(1)}:1</span>
-                <span className="font-mono text-[11px] text-muted/70">min {pair.min}</span>
+                <span className="font-mono text-[11px] text-muted">min {pair.min}</span>
                 <span className={`font-mono text-[11px] ${passes ? 'text-violet' : 'text-pulse'}`}>
                   {passes ? mark : 'BELOW FLOOR'}
                 </span>
-                <span className="ml-auto text-xs text-muted/70">{pair.note}</span>
+                <span className="ml-auto text-xs text-muted">{pair.note}</span>
               </li>
             )
           })}

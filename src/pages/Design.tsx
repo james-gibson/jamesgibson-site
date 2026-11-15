@@ -30,10 +30,10 @@ function Sample({
     <section className="border-t border-line-soft py-10">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="text-lg font-semibold text-cream">{title}</h2>
-        <p className="font-mono text-xs text-muted/70">{library}</p>
+        <p className="font-mono text-xs text-muted">{library}</p>
       </div>
       <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">{note}</p>
-      <p className="mt-3 font-mono text-xs text-pulse/80">{props}</p>
+      <p className="mt-3 font-mono text-xs text-pulse">{props}</p>
       <div className="mt-6 rounded-2xl border border-line bg-surface/60 p-6 sm:p-8">{children}</div>
     </section>
   )
@@ -64,7 +64,7 @@ export function Design() {
         with the same props, rendered by the same bundle. If a sample stops working, the site is
         wrong — which is the point of keeping the documentation and the demo in one file tree.
       </p>
-      <p className="mt-3 max-w-2xl text-sm text-muted/80">
+      <p className="mt-3 max-w-2xl text-sm text-muted">
         Why the page is shaped this way, and what each choice gives up, is written down in{' '}
         <Link
           to="/docs/philosophy"
@@ -75,7 +75,7 @@ export function Design() {
         .
       </p>
 
-      <p className="mt-3 max-w-2xl text-sm text-muted/80">
+      <p className="mt-3 max-w-2xl text-sm text-muted">
         Motion is provided by{' '}
         <a
           href="https://fancy-ui.rama.app"
@@ -116,7 +116,7 @@ export function Design() {
                 style={{ backgroundColor: hex }}
               />
               <span className="mt-2 block font-mono text-xs text-cream">{name}</span>
-              <span className="block font-mono text-[11px] text-muted/70">{hex}</span>
+              <span className="block font-mono text-[11px] text-muted">{hex}</span>
             </li>
           ))}
         </ul>
@@ -236,7 +236,7 @@ export function Design() {
           {still ? (
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
               {['documented', 'guarded', 'deployed', 'readable'].map((word) => (
-                <span key={word} className="text-xs tracking-[0.24em] text-muted/70 uppercase">
+                <span key={word} className="text-xs tracking-[0.24em] text-muted uppercase">
                   {word}
                 </span>
               ))}
@@ -244,7 +244,7 @@ export function Design() {
           ) : (
             <Marquee repeat={3} speed={0.7} fade pauseOnHover>
               {['documented', 'guarded', 'deployed', 'readable'].map((word) => (
-                <span key={word} className="mx-6 text-xs tracking-[0.24em] text-muted/70 uppercase">
+                <span key={word} className="mx-6 text-xs tracking-[0.24em] text-muted uppercase">
                   {word}
                 </span>
               ))}
@@ -329,7 +329,7 @@ export function Design() {
                 <span className="font-mono text-xs text-pulse">{slot.name}</span>
                 <span className="mt-1 block text-xs leading-5 text-muted">{slot.question}</span>
                 {bound[slot.name] ? (
-                  <span className="mt-2 block font-mono text-[11px] text-cream/70">
+                  <span className="mt-2 block font-mono text-[11px] text-cream">
                     bound: {bound[slot.name]}
                   </span>
                 ) : (
@@ -339,7 +339,7 @@ export function Design() {
             ))}
           </ul>
 
-          <p className="mt-3 font-mono text-xs text-muted/80">
+          <p className="mt-3 font-mono text-xs text-muted">
             presumes: {isotope.presumes.join(', ')}
           </p>
         </div>

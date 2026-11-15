@@ -62,7 +62,7 @@ export function AgentHandoff({
             <CopyButton value={instructions} label="Copy" copiedLabel="Copied" size="sm" />
           </div>
 
-          <p className="mt-3 text-xs text-muted/70">
+          <p className="mt-3 text-xs text-muted">
             Scan with a phone camera, or copy the text into whichever agent you already have open.
           </p>
         </div>

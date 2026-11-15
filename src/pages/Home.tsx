@@ -81,7 +81,7 @@ export function Home() {
               </div>
             </MotionReveal>
 
-            <p className="mt-6 text-xs text-muted/70">
+            <p className="mt-6 text-xs text-muted">
               No CLI to install, no plugin order to memorise, no theme file to reconcile.
             </p>
           </div>
@@ -167,7 +167,7 @@ export function Home() {
         {still ? (
           <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2">
             {['project seeds', 'nuts and bolts', 'peas in a pod', 'the guide spills the beans'].map((phrase) => (
-              <span key={phrase} className="text-xs tracking-[0.24em] text-muted/70 uppercase">
+              <span key={phrase} className="text-xs tracking-[0.24em] text-muted uppercase">
                 {phrase}
               </span>
             ))}
@@ -175,7 +175,7 @@ export function Home() {
         ) : (
           <Marquee repeat={3} speed={0.8} fade pauseOnHover>
             {['project seeds', 'nuts and bolts', 'peas in a pod', 'the guide spills the beans'].map((phrase) => (
-              <span key={phrase} className="mx-7 text-xs tracking-[0.24em] text-muted/70 uppercase">
+              <span key={phrase} className="mx-7 text-xs tracking-[0.24em] text-muted uppercase">
                 {phrase}
               </span>
             ))}
@@ -198,7 +198,7 @@ export function Home() {
               — live, with the props that were actually used. If a sample breaks, the site is
               broken, and the build says so before a reader ever sees it.
             </p>
-            <p className="mt-4 text-sm text-muted/80">
+            <p className="mt-4 text-sm text-muted">
               The motion comes from fancy-ui: border beams, reveal-on-scroll, a number ticker, a
               marquee. Whimsy in service of a serious point — the site is the demo.
             </p>

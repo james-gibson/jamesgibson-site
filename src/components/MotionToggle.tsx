@@ -33,7 +33,7 @@ export function MotionToggle() {
           </ToggleGroupItem>
         ))}
       </ToggleGroup>
-      <span className="hidden font-mono text-[10px] text-muted/60 xl:inline" aria-live="polite">
+      <span className="hidden font-mono text-[10px] text-muted xl:inline" aria-live="polite">
         {reduced ? 'os: reduced' : `ladder: ${auto}`}
       </span>
     </div>
