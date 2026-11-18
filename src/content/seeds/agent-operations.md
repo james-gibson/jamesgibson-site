@@ -1,7 +1,7 @@
 ---
 title: Agent operations
 description: The contract an LLM agent needs to take this repository over — machine entry, loop, guard, and the limits.
-order: 8
+order: 70
 updated: 2026-11-12
 tags: seed, agents, operations
 ---

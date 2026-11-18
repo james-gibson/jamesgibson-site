@@ -13,6 +13,9 @@ import { PAGES, type Page } from './content'
  *     rung 3  Operate     delegates the running, wants it repeatable
  *     rung 4  Package     designs systems other people will operate
  *
+ * A rung is a level, not a slot: several seeds may share one when they ask the
+ * same readiness of the reader. `scale()` groups them for the shelf.
+ *
  * Rungs are about readiness, not seniority: a buyer at rung 0 is not a beginner,
  * and a beginner at rung 1 is not buying anything. The order matters because an
  * audience that does not want to deploy software must never be handed a page
@@ -38,7 +41,7 @@ export type Seed = {
   teaches: string[]
   /** the route a newcomer should open first */
   entry: string
-  /** position on the readiness scale; absent for lateral seeds */
+  /** the level this seed assumes; several seeds may share a rung */
   rung?: number
   /** what this audience does with the machine */
   touches: string
@@ -48,6 +51,10 @@ export type Seed = {
   scope?: 'site' | 'entrance'
 }
 
+/**
+ * The rung table. A seed references one; the reference is many-to-one, so any
+ * number of seeds may point at the same level.
+ */
 export const SCALE: Record<number, { label: string; touches: string }> = {
   [-3]: {
     label: 'No script',
@@ -142,6 +149,21 @@ export const SEEDS: Seed[] = [
       'why the right subset depends on the app and on who notices',
     ],
     entry: '/factors/start-here',
+    rung: 1,
+    touches: 'reads concepts; will not deploy anything',
+  },
+  {
+    id: 'scenario-as-contract',
+    title: 'Scenario as contract',
+    audience: 'Someone with a design document and a schema, and no shared definition of done.',
+    assumes: 'You can read Gherkin, and you have a data model you intend to keep.',
+    teaches: [
+      'why a scenario is a promise, not a checklist item',
+      'how one ID turns prose, scenarios and schema into a traceable triangle',
+      'why "follows the configured policy" is a decision, not a test',
+      'which Gherkin constructs a content-addressed canon drops, and what that costs',
+    ],
+    entry: '/guides/from-design-doc-to-scenarios',
     rung: 1,
     touches: 'reads concepts; will not deploy anything',
   },

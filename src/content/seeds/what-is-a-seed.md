@@ -33,13 +33,13 @@ top, rendered from `src/lib/seeds.ts`, so the claim and the content sit together
 Rungs measure **readiness**, not seniority. The question is not "how experienced is this person" but
 "how much of the machine will they touch?" — because that decides what a page is allowed to assume.
 
-| Rung | Readiness | What they do | Seed |
+| Rung | Readiness | What they do | Seeds |
 | --- | --- | --- | --- |
 | −3 | No script | wants the words; has JavaScript off on purpose | No script |
 | −2 | No stylesheet | wants to read; no opinions from the page | No stylesheet |
 | −1 | Just a file | wants the file itself; the page is optional | It's just a file |
 | 0 | Just a website | wants a website and a bill; will not open a terminal | The commercial case |
-| 1 | Understand | reads concepts; will not deploy anything | The twelve factors |
+| 1 | Understand | reads concepts; will not deploy anything | The twelve factors · Scenario as contract |
 | 2 | Learn | runs it locally and breaks it on purpose | The starter |
 | 3 | Operate | delegates the running; wants it repeatable | Agent operations |
 | 4 | Package | designs systems other people will operate | Isotopes |
@@ -50,12 +50,18 @@ ends the conversation. A buyer is not a beginner, and a beginner is not buying a
 why the pitch and the factors are separate seeds with separate entrances rather than one "getting
 started" page with a long first paragraph.
 
-One seed sits beside the ladder instead of on it. **The voice** is a register, not a rung: writers
-produce pages for every audience above, so it carries no level and appears last.
+A rung is a level, not a slot. Several seeds can share one: rung 1 carries the twelve factors and
+scenario as contract because both assume a reader who understands concepts and will not deploy
+anything. The registry groups seeds by rung; the shelf renders the group, not a single title.
 
-The scale is enforced rather than described: the registry must be in rung order, rungs must be
-unique, lateral seeds must come last, and each seed's page must appear in that same order in the
-section. The build refuses a shelf whose ladder and table disagree.
+One seed still sits beside the ladder instead of on it. **The voice** is a register, not a rung:
+writers produce pages for every audience above, so it carries no level and appears last.
+
+The scale is enforced rather than described: the registry must be grouped by rung in ascending
+order, every rung must exist in `SCALE`, lateral seeds must come last, and each seed's page must
+appear in that same order in the section. The page orders are spaced by ten, so a second seed can
+join a rung without renumbering the shelf. The build refuses a shelf whose ladder and table
+disagree.
 
 ### The scale is also the motion budget
 

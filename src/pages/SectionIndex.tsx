@@ -31,7 +31,7 @@ export function SectionIndex({ section }: { section: SectionId }) {
               <tr>
                 <th className="border-b border-line px-4 py-3 font-semibold">Rung</th>
                 <th className="border-b border-line px-4 py-3 font-semibold">Readiness</th>
-                <th className="border-b border-line px-4 py-3 font-semibold">Seed</th>
+                <th className="border-b border-line px-4 py-3 font-semibold">Seeds</th>
               </tr>
             </thead>
             <tbody>
@@ -47,14 +47,16 @@ export function SectionIndex({ section }: { section: SectionId }) {
                     <span className="mt-0.5 block text-xs text-muted">{step.touches}</span>
                   </td>
                   <td className="border-b border-line-soft px-4 py-3">
-                    {step.seeds.map((seed) => (
-                      <Link
-                        key={seed.id}
-                        to={`/seeds/${seed.id}`}
-                        className="text-pulse underline decoration-pulse/30 underline-offset-4 hover:decoration-pulse"
-                      >
-                        {seed.title}
-                      </Link>
+                    {step.seeds.map((seed, i) => (
+                      <span key={seed.id}>
+                        {i > 0 && ' · '}
+                        <Link
+                          to={`/seeds/${seed.id}`}
+                          className="text-pulse underline decoration-pulse/30 underline-offset-4 hover:decoration-pulse"
+                        >
+                          {seed.title}
+                        </Link>
+                      </span>
                     ))}
                   </td>
                 </tr>
@@ -64,18 +66,20 @@ export function SectionIndex({ section }: { section: SectionId }) {
                 <td className="px-4 py-3">
                   <span className="text-cream">Register</span>
                   <span className="mt-0.5 block text-xs text-muted">
-                    writes for any rung; the voice, not the ladder
+                    writes for any rung; a register, not a rung
                   </span>
                 </td>
                 <td className="px-4 py-3">
-                  {lateralSeeds().map((seed) => (
-                    <Link
-                      key={seed.id}
-                      to={`/seeds/${seed.id}`}
-                      className="text-pulse underline decoration-pulse/30 underline-offset-4 hover:decoration-pulse"
-                    >
-                      {seed.title}
-                    </Link>
+                  {lateralSeeds().map((seed, i) => (
+                    <span key={seed.id}>
+                      {i > 0 && ' · '}
+                      <Link
+                        to={`/seeds/${seed.id}`}
+                        className="text-pulse underline decoration-pulse/30 underline-offset-4 hover:decoration-pulse"
+                      >
+                        {seed.title}
+                      </Link>
+                    </span>
                   ))}
                 </td>
               </tr>

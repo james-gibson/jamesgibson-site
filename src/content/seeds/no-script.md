@@ -1,7 +1,7 @@
 ---
 title: No script
 description: Rung −3. The page is a file; the application never loads. It is the strongest claim this site can make about itself.
-order: 2
+order: 10
 updated: 2026-11-12
 tags: seed, satire, no-js
 ---

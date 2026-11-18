@@ -1,7 +1,7 @@
 ---
 title: The starter
 description: The documentation-site pattern itself — content model, derived navigation, guard, deploy — as a seed you can lift.
-order: 7
+order: 60
 updated: 2026-11-12
 tags: seed, starter
 ---

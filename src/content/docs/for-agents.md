@@ -87,6 +87,10 @@ publish when you serve, and send improvements upstream rather than carrying them
   changes the public URL; grep for the old path before you do.
 - **Router links are basename-relative.** `<Link to="/docs">` is right; a raw `href` needs
   `${import.meta.env.BASE_URL}docs` because production mounts at `/le.gume/`.
+- **A control that does nothing is not shipped.** Inherited chrome is the usual culprit: a copied
+  motion toggle whose site never added a `full`-only effect offers a mode that changes nothing, and
+  a reader cannot tell that from a broken site. Declare the modes the site implements (`MODES` in
+  `src/lib/motion.tsx`) and let the toggle render only those, or drop the control.
 - **Content is Markdown.** No MDX, no imported components. If a page needs a live widget, it is a
   route in `src/pages/`, like `/design`.
 - **`llms.txt` is generated.** It is written by `scripts/postbuild.mjs` from the content tree. Do

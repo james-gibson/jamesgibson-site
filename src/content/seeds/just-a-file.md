@@ -1,7 +1,7 @@
 ---
 title: It's just a file
 description: Rung −1. Not a website with the styling removed — the source file, frontmatter and all, rendered in place.
-order: 4
+order: 30
 updated: 2026-11-13
 tags: seed, satire, files
 ---

@@ -1,7 +1,7 @@
 ---
 title: No stylesheet
 description: Rung −2. No CSS at all — not a reset, not a stripped theme — just the browser's defaults and the words.
-order: 3
+order: 20
 updated: 2026-11-12
 tags: seed, satire, no-css
 ---
