@@ -73,4 +73,4 @@ export function AgentHandoff({
 
 /** The canonical handoff for this site. Kept short: a denser payload is a denser code. */
 export const SITE_HANDOFF =
-  'Read https://james-gibson.github.io/le.gume/llms.txt then npm ci && npm run build. Repo: https://github.com/james-gibson/le.gume'
+  'Read https://james-gibson.github.io/le.gume/llms.txt — publish by pushing to main; the deploy workflow builds with npm ci && npm run build. Repo: https://github.com/james-gibson/le.gume'

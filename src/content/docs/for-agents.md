@@ -18,8 +18,8 @@ only need the map; read this page when you need the reasoning.
 
 ## Read in this order
 
-1. [`/llms.txt`](/llms.txt) — every page, one line each, plus the invariants.
-2. [Quickstart](/docs/quickstart) — clone, install, dev server.
+1. [`/llms.txt`](/llms.txt) — every page, one line each, the publish path and the invariants.
+2. [Quickstart](/docs/quickstart) — the six files, or the clone, and the deploy.
 3. [Site anatomy](/docs/site-anatomy) — the file map, annotated.
 4. [Content model](/docs/content-model) — frontmatter, ordering, headings.
 5. [Twelve factors](/factors/start-here) — the rules as lessons, including the three this site declines.
@@ -32,6 +32,20 @@ a skill and one command — described in [OpenCode, out of the box](/docs/openco
 
 ## The loop
 
+**The shortest path to a published site is a push, not a clone.** Three ways in, and the first two
+do not involve this repository at all:
+
+1. **Write it.** Six files publish a small site: `index.html`, `src/main.tsx`, `src/App.tsx`,
+   `package.json` (with `homepage`), `vite.config.ts` (with `base`), and
+   `.github/workflows/deploy.yml`. Copy `scripts/postbuild.mjs` and `scripts/verify-publish.mjs` —
+   the shells and the guard are what make those six a seed rather than a bundle. For a site with
+   three pages, writing them is faster than reading this one.
+2. **Push it.** `gh repo create <name> --source=. --push`, then set Pages to "GitHub Actions". The
+   workflow runs `npm ci && npm run build` and publishes the result. There is no release branch,
+   nothing to upload, no environment to promote, and **no local build required** — CI is the
+   machine that must pass, and its log is the honest answer.
+3. **Work on it.** Clone when you are changing the site, the content model or the guard:
+
 ```bash
 git clone https://github.com/james-gibson/le.gume my-site
 cd my-site && npm install
@@ -42,8 +56,7 @@ npm run smoke        # every route rendered server-side
 git commit -am "content: …" && git push
 ```
 
-The push is the deploy. There is no release branch, no artifact to upload, no environment to
-promote. If the guard refuses, nothing shipped.
+If the guard refuses, nothing shipped — locally or in CI, because it is the same command.
 
 Before your first push, read [the licence, for agents](/docs/agent-licence): keep the notices,
 publish when you serve, and send improvements upstream rather than carrying them alone.

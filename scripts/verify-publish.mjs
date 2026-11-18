@@ -213,7 +213,13 @@ if (!llms) {
       fail('llms', `dist/llms.txt does not list /${route}`)
     }
   }
-  for (const anchor of ['## For agents', '## Invariants', '## Build and verify', '## Isotope shortcuts']) {
+  for (const anchor of [
+    '## Publish',
+    '## For agents',
+    '## Invariants',
+    '## Build and verify',
+    '## Isotope shortcuts',
+  ]) {
     if (!llms.includes(anchor)) fail('llms', `dist/llms.txt is missing the "${anchor}" section`)
   }
 }
@@ -253,19 +259,49 @@ try {
 const seedsSource = await readText('src/lib/seeds.ts').catch(() => '')
 const seedIds = [...seedsSource.matchAll(/^\s{4}id: '([^']+)'/gm)].map((m) => m[1])
 const seedEntries = [...seedsSource.matchAll(/^\s{4}entry: '([^']+)'/gm)].map((m) => m[1])
-const seedRungs = [...seedsSource.matchAll(/^\s{4}rung: (-?\d+),/gm)].map((m) => Number(m[1]))
-const seedLaterals = [...seedsSource.matchAll(/^\s{4}lateral: true,/gm)].length
 
 if (!seedIds.length) fail('seeds', 'no seeds found in src/lib/seeds.ts')
 
-// The ladder: rungs unique, ascending in file order, lateral seeds last.
-for (let i = 1; i < seedRungs.length; i += 1) {
-  if (seedRungs[i] <= seedRungs[i - 1]) {
-    fail('seeds', `rungs are out of order: ${seedRungs[i - 1]} then ${seedRungs[i]}`)
-  }
+// The rungs are a table, not a sequence: `SCALE` is the level registry and a
+// seed points at one. Several seeds may share a rung.
+const scaleSource = seedsSource.slice(
+  seedsSource.indexOf('export const SCALE'),
+  seedsSource.indexOf('export const SEEDS'),
+)
+const scaleRungs = new Set(
+  [...scaleSource.matchAll(/^\s*(?:\[(-?\d+)\]|(-?\d+)):\s*\{/gm)].map((m) =>
+    Number(m[1] ?? m[2]),
+  ),
+)
+if (!scaleRungs.size) fail('seeds', 'SCALE has no rung levels')
+
+const seedObjects = [...seedsSource.matchAll(/\n  \{\n    id: '([^']+)',([\s\S]*?)\n  \},/g)].map(
+  ([, id, body]) => ({
+    id,
+    rung: /^\s{4}rung: (-?\d+),/m.exec(body)?.[1],
+    lateral: /^\s{4}lateral: true,/m.test(body),
+  }),
+)
+if (seedObjects.length !== seedIds.length) {
+  fail('seeds', 'could not read every seed entry in src/lib/seeds.ts')
 }
-if (seedLaterals && seedIds.length - seedLaterals !== seedRungs.length) {
-  fail('seeds', 'a lateral seed must come after every runged seed')
+
+let previousRung = -Infinity
+let sawLateral = false
+for (const seed of seedObjects) {
+  if (seed.lateral) {
+    sawLateral = true
+    if (seed.rung !== undefined) fail('seeds', `lateral seed "${seed.id}" must not declare a rung`)
+    continue
+  }
+  if (sawLateral) fail('seeds', `runged seed "${seed.id}" must come before every lateral seed`)
+  if (seed.rung === undefined) fail('seeds', `seed "${seed.id}" has no rung and is not lateral`)
+  const rung = Number(seed.rung)
+  if (!scaleRungs.has(rung)) {
+    fail('seeds', `seed "${seed.id}" uses rung ${rung}, which SCALE does not define`)
+  }
+  if (rung < previousRung) fail('seeds', `rungs are out of order: ${previousRung} then ${rung}`)
+  previousRung = rung
 }
 
 // Each seed's page must appear in the same order as the registry.
