@@ -58,6 +58,23 @@ git commit -am "content: …" && git push
 
 If the guard refuses, nothing shipped — locally or in CI, because it is the same command.
 
+### Paths, not mandates
+
+Those are three routes, not an order. What this seed adds is that a route **exists and can be
+checked**; which one an agent takes is its own call, and the second one is often the only one a
+small site needs.
+
+That distinction matters for the checks too. The guard enforces what *this* site claims. A
+three-page site may claim less and copy fewer checks; what it may not do is claim a check it does
+not run.
+
+There is a real cost to forcing every rule into a small space: a site that inherits all of them
+can never show what breaking one looks like. Accessibility is the clearest case. Wire
+[the accessibility recapture](/docs/accessible-recapture) into a six-file site and the site cannot
+be inaccessible — so the builder never sees the failure, never prices it, and never learns to
+decide for themselves. A check is worth more as a path than as a condition of validity, and the
+smallest honest claim is the one the builder chose.
+
 Before your first push, read [the licence, for agents](/docs/agent-licence): keep the notices,
 publish when you serve, and send improvements upstream rather than carrying them alone.
 
