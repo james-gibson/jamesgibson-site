@@ -158,3 +158,17 @@ html[data-era='1996'] button {
 /* Decoration does not survive the reset; that is the point of the reset. */
 html[data-era='1996'] svg,
 html[data-era='1996'] .plot-grid { display: none !important; }
+
+/* A path, a URL or a slug is one unbreakable token, and at 320px it is wider
+ * than the column. The overflow guard reads declarations, not text metrics, so
+ * this is the class of sideways scroll it cannot see: break inside the token
+ * rather than let the page do it. */
+article p,
+article li,
+article td,
+article th,
+article h2,
+article h3,
+article blockquote {
+  overflow-wrap: anywhere;
+}

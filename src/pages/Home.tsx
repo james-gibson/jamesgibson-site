@@ -116,7 +116,7 @@ export function Home() {
       </section>
 
       <section className="border-b border-line/70 bg-surface/30">
-        <div className="mx-auto grid w-full max-w-6xl grid-cols-3 gap-6 px-5 py-10 sm:px-8">
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 px-5 py-10 min-[420px]:grid-cols-3 sm:px-8">
           {facts.map((fact) => (
             <div key={fact.k}>
               <p className="font-mono text-3xl font-semibold text-cream sm:text-4xl">
