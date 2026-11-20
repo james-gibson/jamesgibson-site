@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "jamesgibson",
+  "name": "jamesgibson",
+  "preferred": "jamesgibson",
+  "verb": "trace the career",
+  "kind": "seed",
+  "live": "https://jamesgibson.github.io/jamesgibson-site",
+  "repo": "james-gibson/jamesgibson-site",
+  "rung": 3,
+  "description": "The James Gibson seed — an expert Node.js Platform Architect living in Denver, CO — his story, his basics, his specialties and his employment history, as a seed carries them.",
+  "pitches": {
+    "reader": "The story of a Node.js platform architect: basics, specialties, employment, and where the career lives.",
+    "grower": "Every fact in the seed is tied back to the author — via, and to where it came from.",
+    "maintainer": "A story site with no search and no CMS; the seed is the tree, the pages are the leaves.",
+    "packager": "A seed that grows — extending it means adding sections and leaves, not re-architecting the trunk."
+  },
+  "voices": ["reader", "grower", "maintainer", "packager"],
+  "goals": ["try", "verify", "adopt"],
+  "ships": ["jamesgibson"],
+  "builtFrom": ["le.gume", "le.stalk"]
+}
