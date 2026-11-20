@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 // GitHub Pages serves a project site from /<repo>/, so production builds are
 // mounted there. Dev keeps the root so local URLs stay short.
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/le.gume/' : '/',
+  base: '/',
   plugins: [react(), tailwindcss()],
   build: {
     outDir: 'dist',
