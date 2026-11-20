@@ -45,9 +45,10 @@ export function Home() {
 
             <MotionReveal preset="fade-up" delay={120}>
               <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
-                Platform architecture, developer enablement and technical leadership. I work at
+                <span className="font-semibold text-cream">I make claims checkable.</span> I work at
                 the boundary between a system and the people who have to use it — where a correct
-                design and a usable one are the same problem.
+                design and a usable one are the same problem. Platform architecture, developer
+                enablement and technical leadership are how I do that.
               </p>
             </MotionReveal>
 

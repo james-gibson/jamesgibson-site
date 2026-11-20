@@ -165,7 +165,7 @@ function frontmatter(source) {
   return data
 }
 
-const LABELS = { about: 'About', work: 'Work', contact: 'Contact' }
+const LABELS = { about: 'About', ideas: 'Ideas', work: 'Work', contact: 'Contact' }
 const pages = []
 for (const file of await walk(CONTENT)) {
   if (!file.endsWith('.md')) continue
@@ -234,8 +234,10 @@ for (const id of [...new Set(pages.map((p) => p.section))].sort()) {
 lines.push(
   '## For agents',
   '',
-  `- Start with [James Gibson](${SITE}/about/james/): the short version.`,
-  `- [Approach](${SITE}/about/approach/): leadership, enablement and architecture.`,
+  `- Start with [James Gibson](${SITE}/about/james/): the short version and the thesis.`,
+  `- [Checkable claims](${SITE}/ideas/checkable-claims/): the argument behind the work.`,
+  `- [The lint rule](${SITE}/ideas/lint-rule/) and [the last five years](${SITE}/ideas/generator-notes/): the two case studies.`,
+  `- [Values](${SITE}/about/values/), [disciplines](${SITE}/about/disciplines/) and [experience](${SITE}/about/experience/): the evidence.`,
   `- [Work](${SITE}/work/): the public projects, one page each.`,
   `- [Contact](${SITE}/contact/details/): email, GitHub and LinkedIn.`,
   '',

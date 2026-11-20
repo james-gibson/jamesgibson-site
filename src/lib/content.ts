@@ -16,6 +16,11 @@ export const SECTIONS = [
     blurb: 'Who James is, how he works, and the jobs he has held.',
   },
   {
+    id: 'ideas',
+    label: 'Ideas',
+    blurb: 'The arguments behind the work: checkable claims, boundaries and what the evidence costs.',
+  },
+  {
     id: 'work',
     label: 'Work',
     blurb: 'The open-source projects: what each one is and the problem it answers.',
