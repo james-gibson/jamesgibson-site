@@ -8,26 +8,15 @@ import {
   type ComponentProps,
   type ReactNode,
 } from 'react'
-import { useLocation } from 'react-router-dom'
 import { BorderBeam, NumberTicker, Reveal } from 'fancy-ui-react'
-import { PAGES } from './content'
-import { getSeed } from './seeds'
 
 /**
- * The motion budget, set by the ladder.
+ * The motion budget.
  *
- * The seeds sit on a readiness scale. That scale is also a claim about attention:
- * someone at rung 0 is deciding, not decorating, and an animated border on the
- * page they are reading is friction rather than delight. So the default motion
- * budget follows the rung —
- *
- *     rungs 0–1  still    no beams, no marquee, no counting numbers
- *     rungs 2–3  calm     reveals and tickers, no ambient loops
- *     rung 4+    full     everything the design calls for
- *
- * — and the reader can override it in the header. The override is stored, because
- * a preference that resets on navigation is not a preference. Reduced-motion is
- * not an override: it wins, always.
+ * The default is calm: reveals and small accents, no ambient loops. A reader can
+ * choose still or full, and the choice is stored because a preference that
+ * resets on navigation is not a preference. Reduced-motion is not an override:
+ * it wins, always.
  */
 export type MotionMode = 'still' | 'calm' | 'full'
 
@@ -41,7 +30,7 @@ export type MotionMode = 'still' | 'calm' | 'full'
  */
 export const MODES: MotionMode[] = ['still', 'calm', 'full']
 
-const STORAGE_KEY = 'legume.motion'
+const STORAGE_KEY = 'jamesgibson.motion'
 
 type MotionState = {
   /** the mode actually in force */
@@ -62,8 +51,6 @@ function isMode(value: string | null): value is MotionMode {
 }
 
 export function MotionProvider({ children }: { children: ReactNode }) {
-  const { pathname } = useLocation()
-
   const [explicit, setExplicit] = useState<MotionMode | null>(() => {
     if (typeof window === 'undefined') return null
     const stored = window.localStorage.getItem(STORAGE_KEY)
@@ -83,33 +70,7 @@ export function MotionProvider({ children }: { children: ReactNode }) {
     return () => query.removeEventListener('change', onChange)
   }, [])
 
-  const auto = useMemo<MotionMode>(() => {
-    const route = pathname.replace(/\/+$/, '') || '/'
-
-    // The catalogue exists to show motion; it is the one page that is allowed
-    // to be loud by default.
-    if (route === '/design') return 'full'
-
-    // A page's budget comes from the seeds it belongs to, taking the lowest rung
-    // so a page shared by two audiences is safe for both. The old version only
-    // looked at /seeds/<id>, which gave the front door and the whole pitch the
-    // loudest budget — the reason the hero rainbow never muted.
-    const seedId = route.startsWith('/seeds/') ? route.split('/')[2] : undefined
-    const page = PAGES.find((candidate) => `/${candidate.path}` === route)
-    const seedIds = seedId ? [seedId] : (page?.seeds ?? [])
-    const rungs = seedIds
-      .map((id) => getSeed(id)?.rung)
-      .filter((rung): rung is number => typeof rung === 'number')
-
-    // No seed: the home page, a section index, the 404. The front door serves
-    // every rung, so it gets the middle budget rather than the loudest.
-    if (!rungs.length) return 'calm'
-
-    const rung = Math.min(...rungs)
-    if (rung <= 1) return 'still'
-    if (rung <= 3) return 'calm'
-    return 'full'
-  }, [pathname])
+  const auto = useMemo<MotionMode>(() => 'calm', [])
 
   const setMode = useCallback((mode: MotionMode) => {
     setExplicit(mode)

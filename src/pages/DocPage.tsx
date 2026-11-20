@@ -3,21 +3,14 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { neighbours, sectionMeta, type Page } from '../lib/content'
 import { markdownComponents } from '../lib/markdown'
-import { FileView } from '../components/FileView'
-import { useFileView } from '../lib/fileview'
-import { SeedPanel } from '../components/SeedPanel'
 import { usePageMeta } from '../lib/usePageMeta'
-import { HouseLeader } from '../components/HouseLeader'
 
 export function DocPage({ page }: { page: Page }) {
   const meta = sectionMeta(page.section)
   const { prev, next } = neighbours(page)
   usePageMeta(page.title, page.description)
-  const { view } = useFileView()
 
-  if (view === 'file') return <FileView page={page} />
-
-  const editUrl = `https://github.com/james-gibson/le.gume/edit/main/src/content/${page.path}.md`
+  const editUrl = `https://github.com/james-gibson/jamesgibson-site/edit/main/src/content/${page.path}.md`
 
   return (
     <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-[minmax(0,1fr)_220px]">
@@ -55,15 +48,11 @@ export function DocPage({ page }: { page: Page }) {
           </div>
         </header>
 
-        {page.section === 'seeds' && <SeedPanel seedId={page.slug} />}
-
-        {page.path === 'factors/sla-variables' && <HouseLeader />}
-
         <div className="pb-4">
           <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
             {/* The body opens with "# Title", which the header above already
-                renders as the page's <h1>. Rendering both gives every page two
-                h1s and an outline that starts twice. */}
+                renders as the page's <h1>. Rendering both would give the page
+                two h1s. */}
             {page.body.replace(/^\s*#\s+[^\n]*\n/, '')}
           </ReactMarkdown>
         </div>

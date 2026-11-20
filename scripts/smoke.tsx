@@ -4,11 +4,6 @@
  * Builds the app for Node and renders every route to a string. This catches the
  * failure a green `vite build` cannot: a route that throws while rendering, a
  * component whose props changed shape, a page whose Markdown no longer parses.
- *
- *   npm run smoke
- *
- * It is intentionally not part of `npm run build` — the guard is about the
- * published output, this is about the React tree.
  */
 import { renderToString } from 'react-dom/server'
 import { MemoryRouter } from 'react-router-dom'
@@ -17,9 +12,10 @@ import { PAGES } from '../src/lib/content'
 
 const routes = [
   '/',
-  '/design',
-  '/palette',
   ...PAGES.map((page) => `/${page.section}/${page.slug}`),
+  '/cv-technical',
+  '/cv-executive',
+  '/contact',
   '/this-route-does-not-exist',
 ]
 

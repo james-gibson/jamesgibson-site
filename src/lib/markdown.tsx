@@ -30,8 +30,8 @@ export const markdownComponents: Components = {
   a: ({ node: _node, href, ...props }) => {
     const external = !!href && (/^[a-z][a-z0-9+.-]*:/i.test(href) || href.startsWith('//'))
     // Content links are written root-absolute ("/docs/quickstart") because that
-    // is how an author thinks about the site. Production serves from /le.gume/,
-    // so the mount has to be prefixed here or every internal link 404s.
+    // is how an author thinks about the site. The renderer prefixes BASE_URL
+    // so the same link resolves on the deployed site.
     const to =
       !external && href?.startsWith('/')
         ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${href}`

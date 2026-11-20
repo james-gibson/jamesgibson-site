@@ -1,8 +1,6 @@
-import { Navigate, Route, Routes, useParams } from 'react-router-dom'
+import { Route, Routes, useParams } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { SECTIONS, getPage, type SectionId } from './lib/content'
-import { Colour } from './pages/Colour'
-import { Design } from './pages/Design'
 import { DocPage } from './pages/DocPage'
 import { Home } from './pages/Home'
 import { NotFound } from './pages/NotFound'
@@ -25,14 +23,22 @@ function PageRoute() {
   return <DocPage page={page} />
 }
 
+/** Old portfolio URLs: render the same page at the old path, no redirect. */
+function LegacyDoc({ section, slug }: { section: SectionId; slug: string }) {
+  const page = getPage(section, slug)
+  if (!page) return <NotFound />
+  return <DocPage page={page} />
+}
+
 export function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="design" element={<Design />} />
-        <Route path="palette" element={<Colour />} />
-        <Route path="docs/index" element={<Navigate to="/docs" replace />} />
+        {/* URLs from the previous portfolio: keep them alive. */}
+        <Route path="cv-technical" element={<LegacyDoc section="about" slug="cv-technical" />} />
+        <Route path="cv-executive" element={<LegacyDoc section="about" slug="cv-executive" />} />
+        <Route path="contact" element={<LegacyDoc section="contact" slug="details" />} />
         <Route path=":section" element={<SectionRoute />} />
         <Route path=":section/:slug" element={<PageRoute />} />
         <Route path="*" element={<NotFound />} />

@@ -1,26 +1,21 @@
 {
-  "name": "le-gume",
+  "name": "jamesgibson-co",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "A self-documenting documentation site. Replaces the hard parts of shipping docs with a build that already knows them.",
-  "homepage": "https://james-gibson.github.io/le.gume/",
+  "description": "James Gibson — Node.js Platform Architect in Denver. Work, approach and contact.",
+  "homepage": "https://jamesgibson.co",
   "license": "AGPL-3.0-only",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build && node scripts/deck.mjs && vite build --ssr scripts/prerender.tsx --outDir .prerender --emptyOutDir && node .prerender/prerender.js && node scripts/postbuild.mjs && node scripts/doomlint.mjs dist --fail-on high && node scripts/a11y.mjs dist --fail-on high && node scripts/contrast.mjs && node scripts/overflow.mjs && node scripts/verify-publish.mjs",
+    "build": "tsc --noEmit && vite build && vite build --ssr scripts/prerender.tsx --outDir .prerender --emptyOutDir && node .prerender/prerender.js && node scripts/postbuild.mjs && node scripts/verify-publish.mjs",
     "preview": "vite preview",
     "smoke": "vite build --ssr scripts/smoke.tsx --outDir .smoke --emptyOutDir && node .smoke/smoke.js",
     "guard": "node scripts/verify-publish.mjs",
-    "doom": "node scripts/doomlint.mjs dist --fail-on high",
-    "a11y": "node scripts/a11y.mjs dist --fail-on high",
-    "contrast": "node scripts/contrast.mjs",
-    "check": "tsc --noEmit",
-    "overflow": "node scripts/overflow.mjs"
+    "check": "tsc --noEmit"
   },
   "dependencies": {
     "fancy-ui-react": "0.7.0",
-    "qrcode.react": "^4.2.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-markdown": "10.1.0",

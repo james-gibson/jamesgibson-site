@@ -1,81 +1,55 @@
-# le.gume
+# jamesgibson.co
 
-A documentation site that documents itself. Seven sections, one content model, one guard, one
-deploy — and a live design system instead of a screenshot of one.
+The source for [jamesgibson.co](https://jamesgibson.co) — James Gibson's public site: his work,
+his approach to platform engineering, and how to reach him.
 
-<p align="center">
-  <a href="https://github.com/james-gibson/le.gume/actions/workflows/deploy.yml"><img src="https://shieldcn.dev/github/ci/james-gibson/le.gume.svg?workflow=deploy.yml&branch=main&variant=secondary" alt="deploy" /></a>
-  <a href="https://github.com/james-gibson/le.gume/blob/main/LICENSE"><img src="https://shieldcn.dev/github/license/james-gibson/le.gume.svg?variant=secondary" alt="license" /></a>
-  <a href="https://github.com/james-gibson/le.gume/commits/main"><img src="https://shieldcn.dev/github/last-commit/james-gibson/le.gume.svg?variant=secondary" alt="last commit" /></a>
-</p>
+This repository was derived from [le.gume](https://github.com/james-gibson/le.gume) as a **seed**,
+not copied as a template. The content model, the publish guard and the Pages workflow were kept
+because they are true of this site; the inherited pages, the seed/isotope registry, the offline
+deck and the documentation prose were removed because they described le.gume, not this site.
 
-**Live:** https://james-gibson.github.io/le.gume/
+## What is kept from the seed
 
-## What this is
-
-A seed, not a generator. The repository is the template: clone it, read it, keep four files,
-replace the rest with your own words.
-
-- **Content is navigation.** `src/content/**/*.md` is the only place a page is declared; the nav,
-  section indexes, table of contents, previous/next and page counts are all derived from it.
-- **A guard, not a checklist.** `scripts/verify-publish.mjs` fails the build on placeholders,
-  leaked local paths, a mismatched Pages base path, missing SPA fallback, or content that never
-  reached the bundle.
-- **A live design system.** `/design` renders the components the site ships, with the props
-  actually used. Motion comes from [fancy-ui](https://fancy-ui.rama.app).
-- **An agent entry.** `dist/llms.txt` is generated at build time: every route, the build
-  commands, the invariants. An agent can take the site and go.
-- **A smoke test for the React tree.** `npm run smoke` renders every route on the server and
-  fails if one throws.
-
-## Quickstart
-
-```bash
-git clone https://github.com/james-gibson/le.gume my-site
-cd my-site
-npm install
-npm run dev
-```
-
-Node 22+. Nothing else is required.
+| File | Why |
+| --- | --- |
+| `src/lib/content.ts` | One content model; navigation is derived from the file tree |
+| `src/lib/markdown.tsx` | Article typography used by every page |
+| `scripts/verify-publish.mjs` | Fails the build on placeholders, leaks, bad base paths or broken routes |
+| `scripts/postbuild.mjs` | Per-route shells, `404.html`, `.nojekyll`, feeds and the machine entry |
+| `.github/workflows/deploy.yml` | Push to `main` publishes; no manual release step |
 
 ## Commands
 
-| Command | What it does |
-| --- | --- |
-| `npm run dev` | Vite dev server |
-| `npm run build` | `tsc --noEmit`, Vite build, `404.html` + `.nojekyll`, then the publish guard |
-| `npm run smoke` | Renders every route to a string; fails on a render error |
-| `npm run guard` | The guard alone, against an existing `dist/` |
-| `npm run preview` | Serve the production build locally |
-
-## Layout
-
-```text
-src/content/<section>/<slug>.md   pages (frontmatter: title, description, order, updated, tags)
-src/lib/content.ts                the content model: glob, ordering, headings, neighbours
-src/lib/markdown.tsx              article typography
-src/pages/Design.tsx              the live design system
-src/App.tsx                       five routes
-scripts/postbuild.mjs             per-route shells, 404.html, .nojekyll, robots.txt, llms.txt
-scripts/verify-publish.mjs        the publish guard
-scripts/smoke.tsx                 the route smoke test
-.github/workflows/deploy.yml      GitHub Pages on push
+```bash
+npm ci
+npm run dev       # vite
+npm run build     # tsc, vite, prerender, postbuild, guard  <- what CI runs
+npm run smoke     # render every route server-side
+npm run guard     # the guard alone, against an existing dist/
 ```
+
+`npm run build` is the gate. The guard refuses to publish when the base path disagrees with
+`package.json.homepage`, when a route has no shell, when content never reached the bundle, or
+when output contains a placeholder, a local path or a credential. Do not weaken a check to make
+a build pass — fix the output.
+
+## Content
+
+One page is one Markdown file under `src/content/<section>/<slug>.md`, with `title` and
+`description` in frontmatter (plus optional `order`, `updated`, `tags`). The navigation, section
+indexes, table of contents, previous/next links and counts are derived from the file tree. There
+is no nav array to edit.
+
+Internal links in Markdown are written root-absolute (`/about/experience`). The renderer prefixes
+`import.meta.env.BASE_URL`, so they resolve on the deployed site.
 
 ## Deploy
 
-Push to `main`. The workflow runs `npm ci && npm run build`, uploads `dist/`, and publishes with
-`actions/deploy-pages`. The base path lives in two places that must agree — `vite.config.ts`
-(`base`) and `package.json` (`homepage`) — and the guard checks that they do.
-
-## Adding content
-
-Create `src/content/docs/your-page.md`, add frontmatter, run `npm run build`. The navigation
-registers it; there is no nav array to edit. See `/guides/adding-a-page` on the live site, or the
-`legume-content` skill in `.opencode/skills/`.
+Push to `main`. Pages is configured with `build_type: workflow`, the custom domain is
+`jamesgibson.co`, and `CNAME` in the repo root must stay. The deploy builds from `main:/` and
+publishes `dist/`. After a push, verify the public URL, a deep link and the certificate — a green
+workflow is not proof that the site is reachable.
 
 ## License
 
-AGPL-3.0-only. The source is public; if you run a modified version as a network
-service, publish your changes.
+AGPL-3.0-only, inherited from the seed whose code this site still uses.

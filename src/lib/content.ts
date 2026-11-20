@@ -11,39 +11,19 @@
 
 export const SECTIONS = [
   {
-    id: 'docs',
-    label: 'Docs',
-    blurb: 'How the site is put together, and why each part is the size it is.',
+    id: 'about',
+    label: 'About',
+    blurb: 'Who James is, how he works, and the jobs he has held.',
   },
   {
-    id: 'seeds',
-    label: 'Seeds',
-    blurb: 'Bodies of knowledge with a stated audience, a stated assumption and an entrance.',
+    id: 'work',
+    label: 'Work',
+    blurb: 'The open-source projects: what each one is and the problem it answers.',
   },
   {
-    id: 'factors',
-    label: 'Factors',
-    blurb: 'Twelve switches that move the uptime number — each with its price tag and the case for skipping it.',
-  },
-  {
-    id: 'isotopes',
-    label: 'Isotopes',
-    blurb: 'Minimal viable systems you can lift whole: one page per working exemplar.',
-  },
-  {
-    id: 'guides',
-    label: 'Guides',
-    blurb: 'Task-shaped walkthroughs: seed a project, add a page, ship it.',
-  },
-  {
-    id: 'pitch',
-    label: 'Pitch',
-    blurb: 'The commercial case, stated plainly enough to argue with.',
-  },
-  {
-    id: 'writing',
-    label: 'Writing',
-    blurb: 'Longer pieces on the trade — and on the parts that are hard.',
+    id: 'contact',
+    label: 'Contact',
+    blurb: 'Where to reach James and what a useful first message looks like.',
   },
 ] as const
 
