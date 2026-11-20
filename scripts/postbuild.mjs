@@ -85,7 +85,11 @@ const LEGACY_TITLES = {
 const titleFor = (route) => {
   if (!route) return null
   const pageRoute = LEGACY_TITLES[route] ?? route
-  if (pageTitles.has(pageRoute)) return `${pageTitles.get(pageRoute)} · ${NAME}`
+  if (pageTitles.has(pageRoute)) {
+    const pageTitle = pageTitles.get(pageRoute)
+    // The profile page is already named after the site; don't echo it.
+    return pageTitle === NAME ? NAME : `${pageTitle} · ${NAME}`
+  }
   if (route === '404') return `Not found · ${NAME}`
   const section = route.split('/')[0]
   if (!route.includes('/') && section) {
